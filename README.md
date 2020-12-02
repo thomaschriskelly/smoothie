@@ -2,8 +2,8 @@
 Online Smoothie Recipebook
 
 ## Running
-`npm install`
-`npm run start`
+- `npm install`
+- `npm run start`
 
 ## Endpoints
 - `GET /api/smoothies` gets a list of smoothies
