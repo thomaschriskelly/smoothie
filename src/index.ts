@@ -1,6 +1,7 @@
-import express from 'express';
-import { parseRow, db } from './database';
 import bodyParser from 'body-parser';
+import express from 'express';
+import { db, parseRow } from './database';
+import { validateSmoothie } from './utils';
 
 const app = express();
 app.use(bodyParser.json());
@@ -40,25 +41,6 @@ app.get('/api/smoothies/:id', (req, res, next) => {
         });
     });
 });
-
-function validateSmoothie(name: unknown, ingredients: unknown) {
-    const errors = [];
-    if (!name) {
-        errors.push('No name specified');
-    }
-    if (!ingredients) {
-        errors.push('No ingredients specified');
-    }
-    try {
-        if (Object.entries(ingredients).length === 0) {
-            errors.push('No ingredients');
-        }
-        JSON.stringify(ingredients);
-    } catch (error) {
-        errors.push(`Ingredients malformed: ${ingredients}`);
-    }
-    return errors;
-}
 
 /**
  * create a new smoothie
